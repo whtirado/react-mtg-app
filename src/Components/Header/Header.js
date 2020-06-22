@@ -24,7 +24,7 @@ export default function Header() {
           <SearchCardDetail />
         </div>
       </div>
-      <NavigationBreadcrumb />
+      {/* <NavigationBreadcrumb /> */}
     </header>
   );
 }
