@@ -7,7 +7,15 @@ import CardDetail from './Components/CardDetail';
 import DeckListManager from './Components/DeckListManager';
 import DeckCardManager from './Components/DeckCardManager';
 
-// Add loading words to search card details
+// - Upcoming App features
+// Limit cards to 4 each
+// Sort by CMC
+// Draw practice hands
+
+// - Upcoming Server features
+// Create Express.js Server
+// Save data to mongoDB database
+// Challenge friends to live duels (web sockets)
 
 function App() {
   return (
