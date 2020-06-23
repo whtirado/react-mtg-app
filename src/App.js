@@ -9,7 +9,6 @@ import DeckCardManager from './Components/DeckCardManager';
 
 // - Upcoming App features
 // Limit cards to 4 each
-// Sort by CMC
 // Draw practice hands
 
 // - Upcoming Server features

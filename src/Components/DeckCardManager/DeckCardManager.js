@@ -14,6 +14,8 @@ export default function DeckCardManager() {
       const newDeck = [...prev, newCard].sort((a, b) => {
         if (a.type > b.type) return -1;
         else if (a.type < b.type) return 1;
+        else if (a.cmc > b.cmc) return 1;
+        else if (a.cmc < b.cmc) return -1;
         else if (a.name > b.name) return 1;
         else if (a.name < b.name) return -1;
         else return 0;
