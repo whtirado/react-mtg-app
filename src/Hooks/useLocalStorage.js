@@ -14,7 +14,11 @@ export default function useLocalStorage() {
       return { name, cards: parsedCards };
     });
 
+  const deleteItem = (key) => {
+    delete storage[key];
+  };
+
   const clear = () => storage.clear();
 
-  return { setItem, getItem, getAllItems, clear };
+  return { setItem, getItem, getAllItems, deleteItem, clear };
 }

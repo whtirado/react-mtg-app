@@ -6,7 +6,7 @@ import CardList from './CardList';
 
 export default function DeckCardManager() {
   const { deckName } = useParams();
-  const { getItem, setItem } = useLocalStorage();
+  const { getItem, setItem, deleteItem } = useLocalStorage();
   const [deck, setDeck] = useState(getItem(deckName));
 
   const updateDeck = (newCard) => {
@@ -14,6 +14,8 @@ export default function DeckCardManager() {
       const newDeck = [...prev, newCard].sort((a, b) => {
         if (a.type > b.type) return -1;
         else if (a.type < b.type) return 1;
+        else if (a.cmc > b.cmc) return 1;
+        else if (a.cmc < b.cmc) return -1;
         else if (a.name > b.name) return 1;
         else if (a.name < b.name) return -1;
         else return 0;
@@ -27,6 +29,11 @@ export default function DeckCardManager() {
     const clearedDeck = [];
     setItem(deckName, clearedDeck);
     setDeck(clearedDeck);
+  };
+
+  const deleteDeck = (deckName) => {
+    deleteItem(deckName);
+    setDeck(getItem(deckName));
   };
 
   const deleteCard = (cardName) => {
@@ -61,6 +68,7 @@ export default function DeckCardManager() {
             name={deckName}
             deck={deck}
             deleteCard={deleteCard}
+            deleteDeck={deleteDeck}
             clearDeck={clearDeck}
           />
         </div>

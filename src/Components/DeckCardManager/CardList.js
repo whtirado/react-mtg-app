@@ -2,7 +2,13 @@ import React from 'react';
 import ActionBar from './ActionBar';
 import { Link } from 'react-router-dom';
 
-export default function CardList({ name, deck, deleteCard, clearDeck }) {
+export default function CardList({
+  name,
+  deck,
+  deleteCard,
+  deleteDeck,
+  clearDeck,
+}) {
   let content;
 
   const handleRightClick = (e) => {
@@ -12,10 +18,12 @@ export default function CardList({ name, deck, deleteCard, clearDeck }) {
   if (deck.length) {
     content = (
       <>
-        <ActionBar clearDeck={clearDeck} hideClearButton={false} />
-        <div className='font-bold text-lg py-2 text-indigo-700'>
-          {name}: {deck.length} card(s)
-        </div>
+        <ActionBar
+          clearDeck={clearDeck}
+          deleteDeck={deleteDeck}
+          deckName={name}
+          deckCardLength={deck.length}
+        />
         <div className='flex flex-wrap'>
           {deck.map((card, index) => {
             return (
@@ -43,8 +51,11 @@ export default function CardList({ name, deck, deleteCard, clearDeck }) {
   } else {
     content = (
       <>
-        <ActionBar hideClearButton={true} />
-        <span>Deck has no cards...</span>
+        <ActionBar
+          deleteDeck={deleteDeck}
+          deckName={name}
+          deckCardLength={deck.length}
+        />
       </>
     );
   }

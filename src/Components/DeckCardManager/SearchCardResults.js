@@ -48,6 +48,7 @@ export default function SearchCardResults({ results, updateDeck }) {
   const addNewCard = (data) => {
     const newCard = {
       name: data.name,
+      cmc: data.cmc,
       type: manageCardType(data.type_line.toLowerCase()),
       url: data.image_uris
         ? data.image_uris.small
