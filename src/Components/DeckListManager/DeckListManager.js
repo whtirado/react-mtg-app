@@ -3,6 +3,7 @@ import useLocalStorage from '../../Hooks/useLocalStorage';
 import { useState } from 'react';
 import Decks from './Decks';
 import CreateDeck from './CreateDeck';
+import Breadcrumb from '../Breadcrumb/Breadcrumb';
 
 export default function DeckListManager() {
   const { setItem, getAllItems } = useLocalStorage();
@@ -14,13 +15,16 @@ export default function DeckListManager() {
   };
 
   return (
-    <section className='flex flex-col sm:flex-row sm:justify-center'>
-      <aside className='w-full flex-shrink-0 px-2 pt-2 pb-0 sm:w-1/3 lg:w-1/4 border-r'>
-        <CreateDeck addNewDeck={addNewDeck} />
-      </aside>
-      <div className='flex-grow p-2'>
-        <Decks decks={decks} />
-      </div>
-    </section>
+    <>
+      <Breadcrumb level={2} />
+      <section className='flex flex-col sm:flex-row sm:justify-center'>
+        <aside className='w-full flex-shrink-0 px-2 pt-2 pb-0 sm:w-1/3 lg:w-1/4 border-r'>
+          <CreateDeck addNewDeck={addNewDeck} />
+        </aside>
+        <div className='flex-grow p-2'>
+          <Decks decks={decks} />
+        </div>
+      </section>
+    </>
   );
 }
