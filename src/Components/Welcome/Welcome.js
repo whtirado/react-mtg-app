@@ -1,6 +1,6 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPlayCircle } from '@fortawesome/free-solid-svg-icons';
+import { faPlayCircle, faCheckCircle } from '@fortawesome/free-solid-svg-icons';
 import { Link } from 'react-router-dom';
 
 export default function Welcome() {
@@ -8,7 +8,7 @@ export default function Welcome() {
     <section className='flex sm:justify-center'>
       <article className='w-full border shadow-md rounded p-2 m-2 border-indigo-700 sm:w-1/2 lg:w-1/3'>
         <header className='pb-2 border-b border-indigo-700 font-bold text-indigo-800'>
-          Welcome to MTG Matchmaking
+          <FontAwesomeIcon icon={faCheckCircle} /> Welcome to MTG Matchmaking
         </header>
         <div className='text-indigo-800 py-2'>
           A free service for those who enjoy Magic The Gathering. Build decks in
