@@ -1,7 +1,4 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faChevronLeft } from '@fortawesome/free-solid-svg-icons';
 import ModalClearDeck from './ModalClearDeck';
 import ModalDeleteDeck from './ModalDeleteDeck';
 
@@ -35,18 +32,11 @@ export default function ActionBar({
 
       <div className='sticky top-0 bg-white border-b border-indigo-700 mb-2'>
         <div className='flex justify-between shadow p-2'>
-          <Link
-            to='/deck-list-manager'
-            className='flex items-center text-indigo-700'
-          >
-            <FontAwesomeIcon icon={faChevronLeft} />
-            <span className='ml-1'>Back to Decks</span>
-          </Link>
           <button
             onClick={() => {
               setShowModalDeleteDeck(true);
             }}
-            className='bg-red-800 shadow font-bold py-1 px-2 ml-auto rounded text-white hover:shadow-md hover:bg-red-900 hover:text-red-100'
+            className='bg-red-800 shadow font-bold py-1 px-2 rounded text-white hover:shadow-md hover:bg-red-900 hover:text-red-100'
           >
             Delete deck
           </button>

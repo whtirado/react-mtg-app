@@ -1,6 +1,5 @@
 import React from 'react';
 import SearchCardDetail from '../SearchCardDetail';
-import NavigationBreadcrumb from './NavigationBreadcrumb';
 
 export default function Header() {
   return (
@@ -24,7 +23,6 @@ export default function Header() {
           <SearchCardDetail />
         </div>
       </div>
-      {/* <NavigationBreadcrumb /> */}
     </header>
   );
 }

@@ -3,6 +3,7 @@ import { useParams, Redirect } from 'react-router-dom';
 import useLocalStorage from '../../Hooks/useLocalStorage';
 import SearchCard from './SearchCard';
 import CardList from './CardList';
+import Breadcrumb from '../Breadcrumb/Breadcrumb';
 
 export default function DeckCardManager() {
   const { deckName } = useParams();
@@ -59,20 +60,23 @@ export default function DeckCardManager() {
     content = <Redirect to='/deck-list-manager' />;
   } else {
     content = (
-      <section className='flex flex-col sm:flex-row sm:justify-center'>
-        <aside className='w-full flex-shrink-0 p-0 sm:p-2 sm:w-1/3 lg:w-1/4 border-r'>
-          <SearchCard updateDeck={updateDeck} />
-        </aside>
-        <div className='flex-grow p-2'>
-          <CardList
-            name={deckName}
-            deck={deck}
-            deleteCard={deleteCard}
-            deleteDeck={deleteDeck}
-            clearDeck={clearDeck}
-          />
-        </div>
-      </section>
+      <>
+        <Breadcrumb level={3} />
+        <section className='flex flex-col sm:flex-row sm:justify-center'>
+          <aside className='w-full flex-shrink-0 p-0 sm:p-2 sm:w-1/3 lg:w-1/4 border-r'>
+            <SearchCard updateDeck={updateDeck} />
+          </aside>
+          <div className='flex-grow p-2'>
+            <CardList
+              name={deckName}
+              deck={deck}
+              deleteCard={deleteCard}
+              deleteDeck={deleteDeck}
+              clearDeck={clearDeck}
+            />
+          </div>
+        </section>
+      </>
     );
   }
 
