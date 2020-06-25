@@ -21,7 +21,7 @@ export default function Decks({ decks }) {
       </div>
     );
   } else {
-    content = <span>No decks found...</span>;
+    content = <span>No decks found. Click "New" to create a new deck.</span>;
   }
 
   return content;
