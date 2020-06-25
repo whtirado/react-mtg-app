@@ -40,6 +40,7 @@ export default function Dashboard() {
           </div>
           <footer className='flex'>
             <a
+              rel='noopener noreferrer'
               target='_blank'
               href='https://github.com/whtirado/react-mtg-app'
               className='bg-indigo-800 shadow font-bold py-1 px-2 ml-auto rounded text-white hover:shadow-md hover:bg-indigo-900 hover:text-indigo-100 '
