@@ -24,6 +24,13 @@ export default function CardList({
     return code;
   };
 
+  const countCards = () => {
+    return deck.reduce((count, card) => {
+      count += card.qty;
+      return count;
+    }, 0);
+  };
+
   if (deck.length) {
     content = (
       <>
@@ -31,7 +38,7 @@ export default function CardList({
           clearDeck={clearDeck}
           deleteDeck={deleteDeck}
           deckName={name}
-          deckCardLength={deck.length}
+          deckCardLength={countCards()}
         />
         <div className='flex flex-wrap'>
           {deck.map((card, index) => {
@@ -64,7 +71,7 @@ export default function CardList({
         <ActionBar
           deleteDeck={deleteDeck}
           deckName={name}
-          deckCardLength={deck.length}
+          deckCardLength={countCards()}
         />
       </>
     );
