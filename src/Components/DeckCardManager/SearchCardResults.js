@@ -50,6 +50,7 @@ export default function SearchCardResults({ results, updateDeck }) {
       name: data.name,
       cmc: data.cmc,
       type: manageCardType(data.type_line.toLowerCase()),
+      qty: 1,
       url: data.image_uris
         ? data.image_uris.small
         : data.card_faces[0].image_uris.small,
