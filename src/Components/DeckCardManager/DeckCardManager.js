@@ -21,13 +21,16 @@ export default function DeckCardManager() {
       // copy of card was found
       if (cardIndex > -1) {
         const card = newDeck[cardIndex];
-        card.qty = card.qty < 4 ? card.qty + 1 : card.qty;
-        console.log('card qty updated', card.qty);
+
+        // check if card type is a basic land
+        if (card.type === 1) {
+          card.qty += 1;
+        } else {
+          card.qty = card.qty < 4 ? card.qty + 1 : card.qty;
+        }
       } else {
         // add new card to deck
         newDeck.push(newCard);
-
-        console.log('card added', newCard);
 
         // sort cards
         newDeck.sort((a, b) => {
