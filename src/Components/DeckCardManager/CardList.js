@@ -15,6 +15,15 @@ export default function CardList({
     e.preventDefault();
   };
 
+  const repeat = (x, f) => {
+    let code = [];
+    while (x > 0) {
+      code.push(f());
+      x -= 1;
+    }
+    return code;
+  };
+
   if (deck.length) {
     content = (
       <>
@@ -26,24 +35,25 @@ export default function CardList({
         />
         <div className='flex flex-wrap'>
           {deck.map((card, index) => {
-            return (
-              <Link
-                to={`/card-details/${card.name}`}
-                key={index}
-                onContextMenu={(e) => {
-                  handleRightClick(e);
-                  deleteCard(card.name);
-                }}
-                className='cursor-pointer'
-              >
-                <img
-                  src={card.url}
-                  alt={card.name}
-                  title={card.name}
-                  className='w-24'
-                />
-              </Link>
-            );
+            return repeat(card.qty, () => {
+              return (
+                <Link
+                  to={`/card-details/${card.name}`}
+                  onContextMenu={(e) => {
+                    handleRightClick(e);
+                    deleteCard(card.name);
+                  }}
+                  className='cursor-pointer'
+                >
+                  <img
+                    src={card.url}
+                    alt={card.name}
+                    title={card.name}
+                    className='w-24'
+                  />
+                </Link>
+              );
+            });
           })}
         </div>
       </>

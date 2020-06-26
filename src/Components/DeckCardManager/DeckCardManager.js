@@ -11,17 +11,38 @@ export default function DeckCardManager() {
   const [deck, setDeck] = useState(getItem(deckName));
 
   const updateDeck = (newCard) => {
-    setDeck((prev) => {
-      const newDeck = [...prev, newCard].sort((a, b) => {
-        if (a.type > b.type) return -1;
-        else if (a.type < b.type) return 1;
-        else if (a.cmc > b.cmc) return 1;
-        else if (a.cmc < b.cmc) return -1;
-        else if (a.name > b.name) return 1;
-        else if (a.name < b.name) return -1;
-        else return 0;
+    setDeck((currentDeck) => {
+      const newDeck = [...currentDeck];
+
+      const cardIndex = currentDeck.findIndex((card) => {
+        return card.name === newCard.name;
       });
+
+      // copy of card was found
+      if (cardIndex > -1) {
+        const card = newDeck[cardIndex];
+        card.qty = card.qty < 4 ? card.qty + 1 : card.qty;
+        console.log('card qty updated', card.qty);
+      } else {
+        // add new card to deck
+        newDeck.push(newCard);
+
+        console.log('card added', newCard);
+
+        // sort cards
+        newDeck.sort((a, b) => {
+          if (a.type > b.type) return -1;
+          else if (a.type < b.type) return 1;
+          else if (a.cmc > b.cmc) return 1;
+          else if (a.cmc < b.cmc) return -1;
+          else if (a.name > b.name) return 1;
+          else if (a.name < b.name) return -1;
+          else return 0;
+        });
+      }
+
       setItem(deckName, newDeck);
+
       return newDeck;
     });
   };
@@ -38,19 +59,22 @@ export default function DeckCardManager() {
   };
 
   const deleteCard = (cardName) => {
-    setDeck((prev) => {
-      const deck = [...prev];
-      const cardIndex = deck.findIndex((unwanted) => {
+    setDeck((currentDeck) => {
+      const newDeck = [...currentDeck];
+
+      const cardIndex = newDeck.findIndex((unwanted) => {
         return unwanted.name === cardName;
       });
 
-      if (cardIndex > -1) {
-        deck.splice(cardIndex, 1);
+      if (cardIndex > -1 && currentDeck[cardIndex].qty <= 1) {
+        newDeck.splice(cardIndex, 1);
+      } else {
+        newDeck[cardIndex].qty -= 1;
       }
 
-      setItem(deckName, deck);
+      setItem(deckName, newDeck);
 
-      return deck;
+      return newDeck;
     });
   };
 
