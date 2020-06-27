@@ -16,19 +16,15 @@ export default function PracticeHands() {
   const { getItem } = useLocalStorage();
 
   const deck = getItem(deckName);
-  const { createDeck, shuffleDeck } = useCreateDeck(deck);
+  const { createDeck, shuffleDeck } = useCreateDeck();
 
-  const [playerDeck, setPlayerDeck] = useState(() => {
-    return shuffleDeck(createDeck());
-  });
+  const [playerDeck, setPlayerDeck] = useState(shuffleDeck(createDeck(deck)));
 
   const [handSize, setHandSize] = useState(7);
 
   const handleNewHand = () => {
     setHandSize(7);
-    setPlayerDeck((current) => {
-      return shuffleDeck([...current]);
-    });
+    setPlayerDeck(shuffleDeck(playerDeck));
   };
 
   const handleDrawCard = () => {
