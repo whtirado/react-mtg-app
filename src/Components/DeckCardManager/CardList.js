@@ -1,6 +1,7 @@
 import React from 'react';
 import ActionBar from './ActionBar';
 import { Link } from 'react-router-dom';
+import { v4 as uuidv4 } from 'uuid';
 
 export default function CardList({
   name,
@@ -45,6 +46,7 @@ export default function CardList({
             return repeat(card.qty, () => {
               return (
                 <Link
+                  key={uuidv4()}
                   to={`/card-details/${card.name}`}
                   onContextMenu={(e) => {
                     handleRightClick(e);

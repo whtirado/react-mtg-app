@@ -6,6 +6,7 @@ import Dashboard from './Components/Dashboard';
 import CardDetail from './Components/CardDetail';
 import DeckListManager from './Components/DeckListManager';
 import DeckCardManager from './Components/DeckCardManager';
+import PracticeHands from './Components/PracticeHands';
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
             path='/deck-card-manager/:deckName'
             component={DeckCardManager}
           />
+          <Route path='/practice-hands/:deckName' component={PracticeHands} />
           <Route path='/card-details/:cardName' component={CardDetail} />
         </Switch>
       </Router>

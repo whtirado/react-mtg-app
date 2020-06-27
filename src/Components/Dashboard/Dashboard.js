@@ -73,12 +73,6 @@ export default function Dashboard() {
           <div className='text-indigo-800 py-2'>
             <ul>
               <li>
-                <FontAwesomeIcon icon={faChevronRight} /> Limit cards to 4 each
-              </li>
-              <li>
-                <FontAwesomeIcon icon={faChevronRight} /> Draw practice hands
-              </li>
-              <li>
                 <FontAwesomeIcon icon={faChevronRight} /> Host a Express.js
                 server
               </li>
