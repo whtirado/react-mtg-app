@@ -32,7 +32,7 @@ export default function Breadcrumb({ level }) {
           .filter((crumb) => crumb.level <= level)
           .map((crumb) => {
             return (
-              <li className='px-6 py-3 sm:px-2 sm:py-1'>
+              <li key={crumb.level} className='px-6 py-3 sm:px-2 sm:py-1'>
                 <Link to={crumb.path} className='flex items-center'>
                   <FontAwesomeIcon icon={crumb.icon} />
                   <span className='hidden ml-1 sm:inline'>{crumb.name}</span>
