@@ -1,4 +1,4 @@
-export default function useCreateDeck(deck) {
+export default function useCreateDeck() {
   const repeat = (x, f) => {
     let cards = [];
     while (x > 0) {
@@ -8,7 +8,8 @@ export default function useCreateDeck(deck) {
     return cards;
   };
 
-  const shuffleDeck = () => {
+  const shuffleDeck = (deck) => {
+    deck = [...deck];
     for (let i = deck.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
       [deck[i], deck[j]] = [deck[j], deck[i]];
@@ -17,7 +18,8 @@ export default function useCreateDeck(deck) {
     return deck;
   };
 
-  const createDeck = () => {
+  const createDeck = (deck) => {
+    deck = [...deck];
     return deck.reduce((deck, card) => {
       const cards = repeat(card.qty, () => {
         return { name: card.name, url: card.url };
