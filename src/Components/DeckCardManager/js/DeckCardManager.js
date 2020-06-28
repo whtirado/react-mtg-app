@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { useParams, Redirect } from 'react-router-dom';
-import useLocalStorage from '../../Hooks/useLocalStorage';
+import useLocalStorage from '../../../Hooks/useLocalStorage';
 import SearchCard from './SearchCard';
 import CardList from './CardList';
-import Breadcrumb from '../Breadcrumb';
+import Breadcrumb from '../../Breadcrumb/js/Breadcrumb';
 
 export default function DeckCardManager() {
   const { deckName } = useParams();

@@ -1,10 +1,10 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
-import { useGetCardDetails } from '../../Hooks/useAxios';
+import { useGetCardDetails } from '../../../Hooks/useAxios';
 import CardRulings from './CardRulings';
 import CardFormatLegality from './CardFormatLegality';
 import CardImage from './CardImage';
-import Breadcrumb from '../Breadcrumb';
+import Breadcrumb from '../../Breadcrumb';
 
 export default function CardDetail({ location }) {
   let { cardName } = useParams();

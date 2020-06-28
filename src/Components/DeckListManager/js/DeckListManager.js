@@ -1,9 +1,9 @@
 import React from 'react';
-import useLocalStorage from '../../Hooks/useLocalStorage';
+import useLocalStorage from '../../../Hooks/useLocalStorage';
 import { useState } from 'react';
 import Decks from './Decks';
 import CreateDeck from './CreateDeck';
-import Breadcrumb from '../Breadcrumb';
+import Breadcrumb from '../../Breadcrumb/js/Breadcrumb';
 
 export default function DeckListManager() {
   const { setItem, getAllItems } = useLocalStorage();

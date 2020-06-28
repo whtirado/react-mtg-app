@@ -1,5 +1,5 @@
 import React from 'react';
-import { useGetCardRulings } from '../../Hooks/useAxios';
+import { useGetCardRulings } from '../../../Hooks/useAxios';
 
 export default function CardRulings({ rulingsAPI }) {
   const httpRequest = useGetCardRulings(rulingsAPI);
