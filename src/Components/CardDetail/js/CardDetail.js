@@ -1,10 +1,15 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
-import { useGetCardDetails } from '../../Hooks/useAxios';
+import { useGetCardDetails } from '../../../Hooks/useAxios';
 import CardRulings from './CardRulings';
 import CardFormatLegality from './CardFormatLegality';
 import CardImage from './CardImage';
-import Breadcrumb from '../Breadcrumb';
+import Breadcrumb from '../../Breadcrumb';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {
+  faCircleNotch,
+  faExclamation,
+} from '@fortawesome/free-solid-svg-icons';
 
 export default function CardDetail({ location }) {
   let { cardName } = useParams();
@@ -20,7 +25,12 @@ export default function CardDetail({ location }) {
   let content = null;
 
   if (!fromAutocomplete && httpRequest.loading) {
-    content = <div className='px-2'>Loading card details...</div>;
+    content = (
+      <div className='flex items-center justify-center'>
+        <FontAwesomeIcon icon={faCircleNotch} spin />
+        <span className='ml-1'>Loading...</span>
+      </div>
+    );
   } else if (httpRequest.data) {
     const { image_uris, card_faces } = httpRequest.data;
 
@@ -39,9 +49,19 @@ export default function CardDetail({ location }) {
       </>
     );
   } else if (!fromAutocomplete && httpRequest.error) {
-    content = <div className='px-2'>Error loading card details...</div>;
+    content = (
+      <div className='flex items-center justify-center'>
+        <FontAwesomeIcon icon={faExclamation} />
+        <span className='ml-1'>Error loading data</span>
+      </div>
+    );
   } else {
-    content = <div className='px-2'>No card data found for {cardName}</div>;
+    content = (
+      <div className='flex items-center justify-center'>
+        <FontAwesomeIcon icon={faExclamation} />
+        <span className='ml-1'>Card not found</span>
+      </div>
+    );
   }
 
   return content;

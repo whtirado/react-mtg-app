@@ -1,15 +1,15 @@
-import React, { useState, useRef } from 'react';
-import { useGetAutoComplete } from '../../Hooks/useAxios';
-import SearchCardDetailResult from './SearchCardDetailResult';
+import React, { useRef, useState } from 'react';
+import { useGetAutoComplete } from '../../../Hooks/useAxios';
+import SearchCardResults from './SearchCardResults';
 
-export default function SearchCardDetail() {
+export default function SearchCard({ updateDeck }) {
   const refSearchTerm = useRef();
   const [showResults, setShowResults] = useState(true);
   const [searchQuery, setSearchQuery] = useState({
     q: '',
   });
   const httpRequest = useGetAutoComplete(searchQuery);
-  const delay = 500;
+  const delay = 1000;
 
   let timeout = null;
 
@@ -22,26 +22,11 @@ export default function SearchCardDetail() {
           q: search,
         });
       }, delay);
-
-      if (!showResults) {
-        setShowResults(true);
-      }
-    } else {
-      setShowResults(false);
     }
   };
 
   const handleKeyDown = () => {
     clearTimeout(timeout);
-  };
-
-  const handleBlur = () => {
-    // Delay to allow Link to trigger before blur
-    setTimeout(() => {
-      refSearchTerm.current.value = '';
-      httpRequest.data = null;
-      setShowResults(false);
-    }, 250);
   };
 
   return (
@@ -51,7 +36,7 @@ export default function SearchCardDetail() {
           type='text'
           name='searchTerm'
           autoComplete='off'
-          placeholder='Search card by name...'
+          placeholder='Add card to deck...'
           className='flex-grow border-2 border-indigo-700 rounded-full shadow px-4 py-2 my-2 mx-2
             focus:outline-none focus:shadow-outline hover:border-indigo-900
             sm:mx-0 sm:w-1/2 lg:w-1/3'
@@ -59,13 +44,12 @@ export default function SearchCardDetail() {
           onKeyDown={handleKeyDown}
           onKeyUp={handleKeyUp}
           onFocus={() => setShowResults(true)}
-          onBlur={() => handleBlur()}
         />
       </div>
       {showResults && (
         <div className='flex'>
           <div className='flex-grow'>
-            <SearchCardDetailResult results={httpRequest} />
+            <SearchCardResults results={httpRequest} updateDeck={updateDeck} />
           </div>
         </div>
       )}

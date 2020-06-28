@@ -1,5 +1,5 @@
 import React from 'react';
-import SearchCardDetail from '../SearchCardDetail';
+import SearchCardDetail from '../../SearchCardDetail/js/SearchCardDetail';
 
 export default function Header() {
   return (
