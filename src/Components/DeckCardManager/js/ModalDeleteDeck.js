@@ -1,5 +1,8 @@
 import React from 'react';
 import { useTransition, animated } from 'react-spring';
+import { v4 as uuidv4 } from 'uuid';
+
+import '../css/DeckCardManager.css';
 
 export default function ModalDeleteDeck({
   showModal,
@@ -26,7 +29,7 @@ export default function ModalDeleteDeck({
           item && (
             <animated.div
               className='fixed top-0 left-0 w-full h-full bg-black z-50 cursor-pointer'
-              key={key}
+              key={uuidv4()}
               style={props}
               onClick={() => {
                 setShowModalDeleteDeck(false);
@@ -39,8 +42,8 @@ export default function ModalDeleteDeck({
           item && (
             <div className=''>
               <animated.div
-                className='fixed border rounded shadow w-11/12 sm:w-1/2 bg-white z-50'
-                key={key}
+                className='fixed fixed-center border rounded shadow w-11/12 sm:w-1/2 bg-white z-50'
+                key={uuidv4()}
                 style={props}
               >
                 <div className='p-3'>
