@@ -60,7 +60,7 @@ export default function ActionBar({
             className='flex items-center bg-red-800 shadow font-bold py-1 px-2 ml-auto rounded text-white hover:shadow-md hover:bg-red-900 hover:text-red-100'
           >
             <FontAwesomeIcon icon={faTrashAlt} />
-            <span className='ml-1'>Delete deck</span>
+            <span className='ml-1'>Delete</span>
           </button>
           {clearDeck && (
             <button
@@ -70,7 +70,7 @@ export default function ActionBar({
               className='flex items-center bg-red-800 shadow font-bold py-1 px-2 ml-1 rounded text-white hover:shadow-md hover:bg-red-900 hover:text-red-100'
             >
               <FontAwesomeIcon icon={faEraser} />
-              <span className='ml-1'>Clear deck</span>
+              <span className='ml-1'>Clear</span>
             </button>
           )}
         </div>

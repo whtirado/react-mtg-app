@@ -1,6 +1,8 @@
 import React, { useRef, useState } from 'react';
 import { useGetAutoComplete } from '../../../Hooks/useAxios';
 import SearchCardResults from './SearchCardResults';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTimes } from '@fortawesome/free-solid-svg-icons';
 
 export default function SearchCard({ updateDeck }) {
   const refSearchTerm = useRef();
@@ -29,27 +31,44 @@ export default function SearchCard({ updateDeck }) {
     clearTimeout(timeout);
   };
 
+  const handleClearResults = () => {
+    refSearchTerm.current.value = '';
+    httpRequest.data = null;
+    setShowResults(false);
+  };
+
   return (
     <>
-      <div className='flex'>
+      <div className='flex items-center p-2'>
         <input
           type='text'
           name='searchTerm'
           autoComplete='off'
           placeholder='Add card to deck...'
-          className='flex-grow border-2 border-indigo-700 rounded-full shadow px-4 py-2 my-2 mx-2
-            focus:outline-none focus:shadow-outline hover:border-indigo-900
-            sm:mx-0 sm:w-1/2 lg:w-1/3'
+          className='flex-grow min-w-0 border-2 border-indigo-700 rounded-l-full shadow px-4 py-2
+            focus:outline-none focus:shadow-outline hover:border-indigo-900'
           ref={refSearchTerm}
           onKeyDown={handleKeyDown}
           onKeyUp={handleKeyUp}
           onFocus={() => setShowResults(true)}
         />
+        <button
+          type='reset'
+          className='bg-white border-2 border-l-0 border-indigo-700 rounded-r-full py-2 px-3 text-indigo-700
+          focus:outline-none focus:shadow-outline hover:border-indigo-900'
+          onClick={handleClearResults}
+        >
+          <FontAwesomeIcon icon={faTimes} />
+        </button>
       </div>
       {showResults && (
         <div className='flex'>
           <div className='flex-grow'>
-            <SearchCardResults results={httpRequest} updateDeck={updateDeck} />
+            <SearchCardResults
+              results={httpRequest}
+              updateDeck={updateDeck}
+              clearResults={handleClearResults}
+            />
           </div>
         </div>
       )}
