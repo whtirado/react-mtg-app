@@ -2,6 +2,12 @@ import React, { useState } from 'react';
 import ModalClearDeck from './ModalClearDeck';
 import ModalDeleteDeck from './ModalDeleteDeck';
 import { Link } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {
+  faHandPaper,
+  faEraser,
+  faTrashAlt,
+} from '@fortawesome/free-solid-svg-icons';
 
 export default function ActionBar({
   deckName,
@@ -41,27 +47,30 @@ export default function ActionBar({
                   e.preventDefault();
                 }
               }}
-              className='bg-indigo-800 shadow font-bold py-1 px-2 rounded text-white hover:shadow-md hover:bg-indigo-900 hover:text-indigo-100'
+              className='flex items-center bg-indigo-800 shadow font-bold py-1 px-2 rounded text-white hover:shadow-md hover:bg-indigo-900 hover:text-indigo-100'
             >
-              Draw hands
+              <FontAwesomeIcon icon={faHandPaper} />
+              <span className='ml-1'>Draw hand</span>
             </Link>
           )}
           <button
             onClick={() => {
               setShowModalDeleteDeck(true);
             }}
-            className='bg-red-800 shadow font-bold py-1 px-2 ml-auto rounded text-white hover:shadow-md hover:bg-red-900 hover:text-red-100'
+            className='flex items-center bg-red-800 shadow font-bold py-1 px-2 ml-auto rounded text-white hover:shadow-md hover:bg-red-900 hover:text-red-100'
           >
-            Delete deck
+            <FontAwesomeIcon icon={faTrashAlt} />
+            <span className='ml-1'>Delete deck</span>
           </button>
           {clearDeck && (
             <button
               onClick={() => {
                 setShowModalClearDeck(true);
               }}
-              className='bg-red-800 shadow font-bold py-1 px-2 ml-1 rounded text-white hover:shadow-md hover:bg-red-900 hover:text-red-100'
+              className='flex items-center bg-red-800 shadow font-bold py-1 px-2 ml-1 rounded text-white hover:shadow-md hover:bg-red-900 hover:text-red-100'
             >
-              Clear deck
+              <FontAwesomeIcon icon={faEraser} />
+              <span className='ml-1'>Clear deck</span>
             </button>
           )}
         </div>
