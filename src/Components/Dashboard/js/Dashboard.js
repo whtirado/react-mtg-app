@@ -9,7 +9,7 @@ import {
   faProjectDiagram,
   faBoxOpen,
 } from '@fortawesome/free-solid-svg-icons';
-import Breadcrumb from '../../Breadcrumb/js/Breadcrumb';
+import Breadcrumb from '../../Breadcrumb';
 
 export default function Dashboard() {
   return (
