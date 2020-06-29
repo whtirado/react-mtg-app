@@ -17,7 +17,7 @@ export default function CreateDeck({ addNewDeck }) {
   };
 
   return (
-    <div>
+    <>
       <button
         onClick={() => setShowNewDeckForm(true)}
         className='flex items-center justify-center w-full bg-indigo-800 py-2 shadow font-bold rounded text-white
@@ -62,6 +62,6 @@ export default function CreateDeck({ addNewDeck }) {
           </div>
         </form>
       )}
-    </div>
+    </>
   );
 }

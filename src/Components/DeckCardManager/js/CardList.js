@@ -58,7 +58,7 @@ export default function CardList({
                     src={card.url}
                     alt={card.name}
                     title={card.name}
-                    className='w-24'
+                    className='w-24 rounded'
                   />
                 </Link>
               );
