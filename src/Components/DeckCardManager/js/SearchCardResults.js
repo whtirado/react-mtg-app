@@ -4,9 +4,14 @@ import {
   faCircleNotch,
   faExclamation,
   faInfoCircle,
+  faEraser,
 } from '@fortawesome/free-solid-svg-icons';
 
-export default function SearchCardResults({ results, updateDeck }) {
+export default function SearchCardResults({
+  results,
+  updateDeck,
+  clearResults,
+}) {
   const manageCardType = (card) => {
     let cardType = null;
 
@@ -76,31 +81,44 @@ export default function SearchCardResults({ results, updateDeck }) {
       </div>
     );
   } else if (results.data && results.data.length) {
-    content = results.data.map((card) => {
-      return (
-        <button
-          key={card.data.name}
-          onClick={() => addNewCard(card.data)}
-          className='w-full flex items-center p-2 cursor-pointer text-indigo-800 outline-none'
-        >
-          {card.data.card_faces && card.data.card_faces[0].image_uris && (
-            <img
-              className='rounded-full border shadow-md w-12 h-12'
-              src={card.data.card_faces[0].image_uris.art_crop}
-              alt={card.data.name}
-            />
-          )}
-          {card.data.image_uris && (
-            <img
-              className='rounded-full border shadow-md w-12 h-12'
-              src={card.data.image_uris.art_crop}
-              alt={card.data.name}
-            />
-          )}
-          <span className='ml-1'>{card.data.name}</span>
-        </button>
-      );
-    });
+    content = (
+      <>
+        {results.data.map((card) => {
+          return (
+            <button
+              key={card.data.name}
+              onClick={() => addNewCard(card.data)}
+              className='w-full flex items-center p-2 cursor-pointer text-indigo-800 outline-none'
+            >
+              {card.data.card_faces && card.data.card_faces[0].image_uris && (
+                <img
+                  className='rounded border shadow-md w-12 h-12'
+                  src={card.data.card_faces[0].image_uris.art_crop}
+                  alt={card.data.name}
+                />
+              )}
+              {card.data.image_uris && (
+                <img
+                  className='rounded border shadow-md w-12 h-12'
+                  src={card.data.image_uris.art_crop}
+                  alt={card.data.name}
+                />
+              )}
+              <span className='ml-1'>{card.data.name}</span>
+            </button>
+          );
+        })}
+        <div className='flex'>
+          <button
+            onClick={() => clearResults()}
+            className='flex-grow items-center bg-blue-500 shadow font-bold py-1 px-2 m-2 rounded text-white hover:shadow-md hover:bg-blue-700 hover:text-blue-100 focus:outline-none focus:shadow-outline'
+          >
+            <FontAwesomeIcon icon={faEraser} />
+            <span className='ml-1'>Clear results</span>
+          </button>
+        </div>
+      </>
+    );
   } else if (results.data && !results.data.length) {
     content = (
       <div className='flex items-center justify-center'>
