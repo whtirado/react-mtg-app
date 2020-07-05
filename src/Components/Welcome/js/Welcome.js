@@ -2,9 +2,10 @@ import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlayCircle, faCheckCircle } from '@fortawesome/free-solid-svg-icons';
 import { Link } from 'react-router-dom';
+import Animate from '../../Animate';
 
 export default function Welcome() {
-  return (
+  const content = (
     <section className='flex sm:justify-center'>
       <article className='w-full border shadow-md rounded p-2 m-2 border-indigo-700 sm:w-1/2 lg:w-1/3'>
         <header className='pb-2 border-b border-indigo-700 font-bold text-indigo-800'>
@@ -26,4 +27,6 @@ export default function Welcome() {
       </article>
     </section>
   );
+
+  return <Animate content={content} direction='bottom' />;
 }

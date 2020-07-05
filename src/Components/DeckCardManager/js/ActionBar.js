@@ -37,7 +37,7 @@ export default function ActionBar({
         />
       )}
 
-      <div className='sticky top-0 bg-white border-b border-indigo-700 mb-2'>
+      <div className='bg-white border-b border-indigo-700 mb-2'>
         <div className='flex items-center shadow p-2'>
           {deckCardLength > 59 && (
             <Link

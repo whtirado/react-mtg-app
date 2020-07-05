@@ -4,6 +4,7 @@ import { useState } from 'react';
 import Decks from './Decks';
 import CreateDeck from './CreateDeck';
 import Breadcrumb from '../../Breadcrumb';
+import Animate from '../../Animate';
 
 export default function DeckListManager() {
   const { setItem, getAllItems } = useLocalStorage();
@@ -14,17 +15,25 @@ export default function DeckListManager() {
     setDecks(getAllItems());
   };
 
-  return (
+  const navBreadcrumb = <Breadcrumb level={2} />;
+
+  const createDeck = <CreateDeck addNewDeck={addNewDeck} />;
+
+  const deckList = <Decks decks={decks} />;
+
+  const content = (
     <>
-      <Breadcrumb level={2} />
+      <Animate content={navBreadcrumb} />
       <section className='flex flex-col sm:flex-row sm:justify-center'>
         <aside className='w-full flex-shrink-0 px-2 pt-2 pb-0 sm:w-1/3 lg:w-1/4 border-r'>
-          <CreateDeck addNewDeck={addNewDeck} />
+          <Animate content={createDeck} direction='left' />
         </aside>
         <div className='flex-grow p-2'>
-          <Decks decks={decks} />
+          <Animate content={deckList} direction='right' delay='.2s' />
         </div>
       </section>
     </>
   );
+
+  return content;
 }

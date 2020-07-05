@@ -32,9 +32,11 @@ export default function SearchCard({ updateDeck }) {
   };
 
   const handleClearResults = () => {
-    refSearchTerm.current.value = '';
-    httpRequest.data = null;
-    setShowResults(false);
+    if (refSearchTerm.current.value.length) {
+      refSearchTerm.current.value = '';
+      httpRequest.data = null;
+      setShowResults(false);
+    }
   };
 
   return (

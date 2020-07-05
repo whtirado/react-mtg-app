@@ -4,6 +4,7 @@ import useLocalStorage from '../../../Hooks/useLocalStorage';
 import SearchCard from './SearchCard';
 import CardList from './CardList';
 import Breadcrumb from '../../Breadcrumb';
+import Animate from '../../Animate';
 
 export default function DeckCardManager() {
   const { deckName } = useParams();
@@ -81,6 +82,10 @@ export default function DeckCardManager() {
     });
   };
 
+  const navBreadcrumb = <Breadcrumb level={3} />;
+
+  const cardSearch = <SearchCard updateDeck={updateDeck} />;
+
   let content = null;
 
   if (!deck) {
@@ -88,10 +93,10 @@ export default function DeckCardManager() {
   } else {
     content = (
       <>
-        <Breadcrumb level={3} />
+        <Animate content={navBreadcrumb} />
         <section className='flex flex-col sm:flex-row sm:justify-center'>
           <aside className='w-full flex-shrink-0 p-0 sm:p-2 sm:w-1/3 lg:w-1/4 border-r'>
-            <SearchCard updateDeck={updateDeck} />
+            <Animate content={cardSearch} direction='left' />
           </aside>
           <div className='flex-grow p-2'>
             <CardList

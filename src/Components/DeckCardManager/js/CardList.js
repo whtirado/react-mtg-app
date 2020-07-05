@@ -2,6 +2,7 @@ import React from 'react';
 import ActionBar from './ActionBar';
 import { Link } from 'react-router-dom';
 import { v4 as uuidv4 } from 'uuid';
+import Animate from '../../Animate/js/Animate';
 
 export default function CardList({
   name,
@@ -32,39 +33,52 @@ export default function CardList({
     }, 0);
   };
 
+  const actionBar = (
+    <ActionBar
+      clearDeck={clearDeck}
+      deleteDeck={deleteDeck}
+      deckName={name}
+      deckCardLength={countCards()}
+    />
+  );
+
+  const cardContainer = (
+    <div className='flex flex-wrap'>
+      {deck.map((card, index) => {
+        return repeat(card.qty, () => {
+          return (
+            <Link
+              key={uuidv4()}
+              to={`/card-details/${card.name}`}
+              onContextMenu={(e) => {
+                handleRightClick(e);
+                deleteCard(card.name);
+              }}
+              className='cursor-pointer'
+            >
+              <img
+                src={card.url}
+                alt={card.name}
+                title={card.name}
+                className='w-24 rounded'
+              />
+            </Link>
+          );
+        });
+      })}
+    </div>
+  );
+
   if (deck.length) {
     content = (
       <>
-        <ActionBar
-          clearDeck={clearDeck}
-          deleteDeck={deleteDeck}
-          deckName={name}
-          deckCardLength={countCards()}
+        <Animate
+          content={actionBar}
+          classProps='sticky top-0 z-50'
+          direction='right'
+          delay='.2s'
         />
-        <div className='flex flex-wrap'>
-          {deck.map((card, index) => {
-            return repeat(card.qty, () => {
-              return (
-                <Link
-                  key={uuidv4()}
-                  to={`/card-details/${card.name}`}
-                  onContextMenu={(e) => {
-                    handleRightClick(e);
-                    deleteCard(card.name);
-                  }}
-                  className='cursor-pointer'
-                >
-                  <img
-                    src={card.url}
-                    alt={card.name}
-                    title={card.name}
-                    className='w-24 rounded'
-                  />
-                </Link>
-              );
-            });
-          })}
-        </div>
+        <Animate content={cardContainer} direction='bottom' delay='.4s' />
       </>
     );
   } else {
