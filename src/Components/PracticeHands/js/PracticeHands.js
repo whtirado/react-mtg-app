@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
-  faPlus,
-  faHandPaper,
   faChevronLeft,
+  faUndo,
+  faPlus,
 } from '@fortawesome/free-solid-svg-icons';
 import { useParams, Redirect, Link } from 'react-router-dom';
 import useLocalStorage from '../../../Hooks/useLocalStorage';
@@ -58,14 +58,14 @@ export default function PracticeHands() {
             className='flex items-center bg-indigo-800 shadow font-bold py-1 px-2 mx-1 rounded text-white hover:shadow-md hover:bg-indigo-900 hover:text-indigo-100'
             onClick={handleNewHand}
           >
-            <FontAwesomeIcon icon={faPlus} />
+            <FontAwesomeIcon icon={faUndo} />
             <span className='ml-1'>New hand</span>
           </button>
           <button
             className='bg-indigo-800 shadow font-bold py-1 px-2 mx-1 rounded text-white hover:shadow-md hover:bg-indigo-900 hover:text-indigo-100'
             onClick={handleDrawCard}
           >
-            <FontAwesomeIcon icon={faHandPaper} />
+            <FontAwesomeIcon icon={faPlus} />
             <span className='ml-1'>Draw</span>
           </button>
         </div>
